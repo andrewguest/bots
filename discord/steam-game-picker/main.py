@@ -1,11 +1,14 @@
+import os
 import random
 
 from disnake.ext import commands
+from dotenv import load_dotenv
 
 import steam
 
 
 # Discord bot setup
+load_dotenv()
 bot = commands.Bot()
 
 
@@ -28,7 +31,4 @@ async def pick_random_game(interaction, steam_community_name: str):
 
 
 if __name__ == "__main__":
-    # TODO put this key in an environment variable
-    bot.run(
-        "MTAwNTU1NzUxMTM4ODEzNTUxNA.Gw-L-F.1jkRChnKHFkkTAXhslJ4xqxea65z2NMyvrhTow"
-    )
+    bot.run(os.getenv("DISCORD_TOKEN"))
