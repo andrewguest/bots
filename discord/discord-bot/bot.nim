@@ -4,10 +4,13 @@ import strformat
 import dimscmd
 import json
 import options
+import dotenv
 
+
+load()  # load the .env file
 
 # Initialise everthing
-const token = "MTAxMzIxNTQ2OTExODk1MTUzNA.GeWxhe.g0z-lPkotn0tiYYSzUXZujQ5LJ-cTBiWMm2p68"
+const token = getEnv("DISCORD_TOKEN")
 let discord = newDiscordClient(token)
 var cmd = discord.newHandler() # Must be var
 randomize()
