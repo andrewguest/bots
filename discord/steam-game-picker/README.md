@@ -8,7 +8,8 @@ You need a Discord token for this bot to work. This bot only needs the **Send Me
     |Environment variable|Description|
     |---|---|
     |STEAM_GAME_PICKER_DISCORD_TOKEN|Your Discord auth token for this bot.|
-    |STEAM_GAME_PICKER_LOGGING_DIR|The directory to store the logs for this bot. The code will create a **logs/** directory inside of the provided location.|
+    |STEAM_GAME_PICKER_LOGGING_DIR|The directory to store the logs for this bot.|
+    |STEAM_GAME_PICKER_LOGFILE_NAME_FORMAT|Format for the filename of the log file.|
 
 3. Install the required packages: `pip install -r requirements.txt`
 
