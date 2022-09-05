@@ -20,7 +20,7 @@ logging_format = logging.Formatter(
 )
 logfile_location = f'{os.getenv("STEAM_GAME_PICKER_LOGGING_DIR")}/steam-game-picker.log'
 
-handler = logging.handlers.TimedRotatingFileHandler(logfile_location, when="S", interval=30, backupCount=10)
+handler = logging.handlers.TimedRotatingFileHandler(logfile_location, when="midnight", backupCount=10)
 handler.setFormatter(logging_format)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
