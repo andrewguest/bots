@@ -31,4 +31,4 @@ async def pick_random_game(interaction, steam_community_name: str):
 
 
 if __name__ == "__main__":
-    bot.run(os.getenv("DISCORD_TOKEN"))
+    bot.run(os.getenv("STEAM_GAME_PICKER_DISCORD_TOKEN"))

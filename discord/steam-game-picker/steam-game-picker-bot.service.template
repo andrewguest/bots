@@ -1,0 +1,15 @@
+[Unit]
+Description=Steam game picker bot
+DefaultDependencies=no
+After=network.target
+
+[Service]
+Type=simple
+User=bot-runner
+Group=bots
+ExecStart=/home/bot-runner/bots/discord/steam-game-picker/venv/bin/python /home/bot-runner/bots/discord/steam-game-picker/main.py
+TimeoutStartSec=30
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
