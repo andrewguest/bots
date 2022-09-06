@@ -1,14 +1,18 @@
+import os
+
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
+from dotenv import load_dotenv
 
 from utils.models import Base, Dice
 
 
-CONNECTION_STRING = "postgresql://doadmin:AVNS_RcoBc134Bij8axBPN5K@bots-db1-do-user-1973611-0.b.db.ondigitalocean.com:25060/defaultdb?sslmode=require"
+load_dotenv()  # Load environment variables from .env file
+
+CONNECTION_STRING = os.getenv("DEATH_ROLL_DATABASE_CONNECTION_STRING") or ""
 
 engine = create_engine(CONNECTION_STRING)
 meta = MetaData(engine)
-
 meta.create_all(engine)
 Base.metadata.create_all(engine)
 
