@@ -12,9 +12,10 @@
 
 You need a Discord token for this bot to work. This bot only needs the **Send Message** permission.
 
-1. Create a **.env** file:
-   1. `cp config/.env.template .env`
-2. Update the values in the new **.env** file to match your needs.
+1. Create a **config.yaml** file:
+   1. `cp config/config.yaml.template config/config.yaml`
+
+2. Update the values in the new **config.yaml** file to match your needs.
 
     |Environment variable|Description|
     |---|---|
@@ -43,17 +44,20 @@ You need a Discord token for this bot to work. This bot only needs the **Send Me
 
 You need a Discord token for this bot to work. This bot only needs the **Send Message** permission.
 
-1. Create a **.env** file:
-   1. `cp config/.env.template .env`
-2. Update the values in the new **.env** file to match your needs.
+1. Create a **config.yaml** file:
+   1. `cp config/config.yaml.template config/config.yaml`
+
+2. Update the values in the new **config.yaml** file to match your needs.
 
     |Environment variable|Description|
     |---|---|
     |STEAM_GAME_PICKER_DISCORD_TOKEN|Your Discord auth token for this bot.|
     |STEAM_GAME_PICKER_LOGGING_DIR|The directory to store the logs for this bot.|
     |STEAM_GAME_PICKER_LOGFILE_NAME_FORMAT|Format for the filename of the log file.|
+
 3. Build the image:
    1. `docker build -f deploy/Docker/Dockerfile -t steam-game-picker-bot .`
+
 4. Run the container:
    1. `docker run -d steam-game-picker-bot`
 
@@ -63,10 +67,10 @@ You need a Discord token for this bot to work. This bot only needs the **Send Me
 
 You need a Discord token for this bot to work. This bot only needs the **Send Message** permission.
 
-1. Copy the `secrets.yaml.template` template file:
-    `cp deploy/Kubernetes/secrets.yaml.template deploy/Kubernetes/secrets.yaml`
+1. Copy the `config.yaml.template` template file:
+    `cp config/config.yaml.template config/config.yaml`
 
-2. Update the `deploy/Kubernetes/secrets.yaml` file with the appropriate values.
+2. Update the `config/config.yaml` file with the appropriate values.
 
     |Environment variable|Description|
     |---|---|
@@ -80,6 +84,5 @@ You need a Discord token for this bot to work. This bot only needs the **Send Me
 4. Apply the Kubernetes files:
     ```bash
     kubectl apply -f deploy/Kubernetes/namespace.yaml  # Create the custom namespace
-    kubectl apply -f deploy/Kubernetes/secrets.yaml  # Add the secrets
     kubectl apply -f deploy/Kubernetes/deployment.yaml  # Create the deployment
     ```

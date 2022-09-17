@@ -189,5 +189,9 @@ pip-selfcheck.json
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/python,venv,nim
+
+# Custom entries
 **/.vscode/settings.json
 **/secrets.yaml
+**/config.yaml
+**/service-account-credentials.json

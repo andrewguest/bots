@@ -3,24 +3,40 @@ import logging.handlers
 import os
 import random
 
-from dotenv import load_dotenv
 from disnake.ext import commands
+import google.cloud.logging
+import yaml
 
 import steam
 
 
-# Setup
-load_dotenv()  # Load environment variables from the .env file
+# Parse the config.yaml file
+with open("./config/config.yaml", "r") as file:
+    config_settings = yaml.safe_load(file)
+
+# Create Discord bot instance
 bot = commands.Bot()
+
+# Setup the Google Cloud logging client
+if config_settings["logging"]["gcp_logging"]["enabled"]:
+    client = google.cloud.logging.Client.from_service_account_json(
+        config_settings["logging"]["gcp_logging"]["service_account_creds_path"]
+    )
+    client.setup_logging()
 
 # Logging setup
 logging_format = logging.Formatter(
-    os.getenv('STEAM_GAME_PICKER_LOGFILE_NAME_FORMAT')
-    or '%(asctime)s %(name)s %(levelname)s %(message)s'
+    config_settings["logging"]["format"]
+    or "%(asctime)s %(name)s %(levelname)s %(message)s"
 )
-logfile_location = f'{os.getenv("STEAM_GAME_PICKER_LOGGING_DIR")}/steam-game-picker.log'
 
-handler = logging.handlers.TimedRotatingFileHandler(logfile_location, when="midnight", backupCount=10)
+logfile_location = (
+    f'{config_settings["logging"]["directory"]}/steam-game-picker.log'
+)
+
+handler = logging.handlers.TimedRotatingFileHandler(
+    logfile_location, when="midnight", backupCount=10
+)
 handler.setFormatter(logging_format)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -39,13 +55,17 @@ async def pick_random_game(interaction, steam_community_name: str):
         await interaction.response.send_message(
             f"Your random game:\n **{random.choice(list(results.keys()))}**"
         )
-        logger.info(f'SUCCESS - Invoked by: {interaction.author} | Steam user provided: {steam_community_name}')
+        logger.info(
+            f"SUCCESS - Invoked by: {interaction.author} | Steam user provided: {steam_community_name}"
+        )
     else:
         await interaction.response.send_message(
             f"Could not find any games for: {steam_community_name}"
         )
-        logger.error(f'FAILED - Invoked by: {interaction.author} | Steam user provided: {steam_community_name} | Error message: {results}')
+        logger.error(
+            f"FAILED - Invoked by: {interaction.author} | Steam user provided: {steam_community_name} | Error message: {results}"
+        )
 
 
 if __name__ == "__main__":
-    bot.run(os.getenv("STEAM_GAME_PICKER_DISCORD_TOKEN"))
+    bot.run(config_settings["discord"]["token"])
