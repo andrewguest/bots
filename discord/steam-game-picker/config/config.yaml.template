@@ -7,13 +7,3 @@ logging:
 
   # Format for logging messages
   format: "%(asctime)s %(name)s %(levelname)s %(message)s"
-
-  # These settings only apply if you're running the bot in Google Cloud and using
-  #   Google Cloud Logging.
-  gcp_logging:
-    # Enable Google Cloud Logging?
-    enabled: True
-
-    # Path to the JSON file with service account credentials for accessing the
-    #   Google Cloud Logging service
-    service_account_creds_path: "./config/service-account-credentials.json"

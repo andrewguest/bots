@@ -1,10 +1,8 @@
 import logging
 import logging.handlers
-import os
 import random
 
 from disnake.ext import commands
-import google.cloud.logging
 import yaml
 
 import steam
@@ -16,13 +14,6 @@ with open("./config/config.yaml", "r") as file:
 
 # Create Discord bot instance
 bot = commands.Bot()
-
-# Setup the Google Cloud logging client
-if config_settings["logging"]["gcp_logging"]["enabled"]:
-    client = google.cloud.logging.Client.from_service_account_json(
-        config_settings["logging"]["gcp_logging"]["service_account_creds_path"]
-    )
-    client.setup_logging()
 
 # Logging setup
 logging_format = logging.Formatter(
