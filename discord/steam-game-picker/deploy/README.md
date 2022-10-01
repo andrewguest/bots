@@ -59,7 +59,7 @@ You need a Discord token for this bot to work. This bot only needs the **Send Me
    1. `docker build -f deploy/Docker/Dockerfile -t steam-game-picker-bot .`
 
 4. Run the container:
-   1. `docker run -d steam-game-picker-bot`
+   1. `docker run --name=steam-game-picker-bot -d steam-game-picker-bot`
 
 ---
 

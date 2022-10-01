@@ -3,7 +3,7 @@ discord:
 
 logging:
   # Where to store the logs on the OS
-  directory: "/steam-game-picker/bot/logs"
+  directory: "/steam-game-picker-bot/logs"
 
   # Format for logging messages
   format: "%(asctime)s %(name)s %(levelname)s %(message)s"
