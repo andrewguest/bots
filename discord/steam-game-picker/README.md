@@ -8,4 +8,6 @@ There are multiple ways to deploy this bot. See the [README](deploy/README.md) i
 
 
 # Commands
-`/random-game <steam communitiy username>` - Returns a random game from the provided user's Steam library. *This only works if the user's Steam library is public.*
+|Command|Description|Notes|
+|---|---|---|
+|`/random-game <steam communitiy username>`|Returns a random game from the provided user's Steam library.|Only works if the user's Steam library is public.|
