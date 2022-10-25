@@ -1,4 +1,4 @@
-FROM python:3.10-bullseye
+FROM python:3.11-bullseye
 
 # Define a HOME_DIR variable
 ARG HOME_DIR=/steam-game-picker-bot
